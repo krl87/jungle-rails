@@ -1,6 +1,5 @@
 <section>
 <h1>Register</h1>
-  <form >
     <%= form_for :user, url: '/users' do |f| %>
     <div class="form-group">
       <%= f.label :first_name %>
@@ -26,5 +25,4 @@
       <%= f.submit "Submit",  class: 'btn btn-primary' %>
     </div>
     <% end %>
-  </form>
 </section>
