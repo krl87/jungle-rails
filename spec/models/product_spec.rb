@@ -1,9 +1,19 @@
-RSpec.describe Product, type :model do
+require 'rails_helper'
+RSpec.describe Product, type: :model do
   describe 'Validations' do
+    it 'to be valid ' do
+      category = Category.create(name: 'stickers')
+      product = category.products.create(
+        name: "corgi",
+        price: 100,
+        quantity: 20
+      )
+      expect(product).to be_valid
+    end
 
     it 'not valid without a name' do
-      category = Category.new(name: 'stickers')
-      product = category.products.new(
+      category = Category.create(name: 'stickers')
+      product = category.products.create(
         name: nil,
         price: 100,
         quantity: 20
@@ -12,8 +22,8 @@ RSpec.describe Product, type :model do
     end
 
     it 'not valid without a price' do
-      category = Category.new(name: 'stickers')
-      product = category.products.new(
+      category = Category.create(name: 'stickers')
+      product = category.products.create(
         name: 'corgi',
         price: nil,
         quantity: 20
@@ -22,8 +32,8 @@ RSpec.describe Product, type :model do
     end
 
     it 'not valid without a quantity' do
-      category = Category.new(name: 'stickers')
-      product = category.products.new(
+      category = Category.create(name: 'stickers')
+      product = category.products.create(
         name: 'corgi',
         price: 20,
         quantity: nil
@@ -32,7 +42,8 @@ RSpec.describe Product, type :model do
     end
 
     it 'not valid without a category' do
-      product = category.products.new(
+      # category = Category.create(name: 'stickers')
+      product = Product.create(
         name: 'corgi',
         price: 200,
         quantity: 30
